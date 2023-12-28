@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="card shadow">
+    <h5 class="card-header">My Todo List</h5>
+    <div class="card-body">
+        <ul class="list-group" *ngFor="let data of listData;let i=index">
+
+            <li class="list-group-item">
+                <div class="form-check d-inline">
+                    <input type="checkbox" class="form-check-input" id="complete" [checked]="data?.isCompleted == true ? true :false" (change)="checkData(data?.id,$event)">
+                    <label for="complete" class="form-check-label lead">{{data?.title}}</label>
+                </div>
+                
+                <div class="float-right">
+                    <span class="mx-3 date-data">{{data?.date | date}}</span>
+                    <strong [ngClass]="data?.isCompleted ? 'complete-color':'inComplete-color'">{{data?.isCompleted ? 'Completed':'Incomplete'}}</strong>
+                    <i class="fa fa-flag mx-3 btn" (click)="priorityData(data?.id)"  [ngClass]="data?.isPriority == true ? 'text-danger':''"></i>
+                    <button class="btn btn-primary btn-sm mx-3" (click)="todoUpdate(data)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                    <button class="btn btn-danger btn-sm mx-3" (click)="todoDelete(data)">x</button>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
